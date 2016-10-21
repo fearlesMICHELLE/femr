@@ -136,6 +136,11 @@ public class PrescriptionItem {
         return medicationRemaining;
     }
 
+    /*Returns a string with the quantity of the medication and the name of the medication*/
+    public String getMedicationDetails(){
+       return this.amount + " " + this.name;
+    }
+
     public void setMedicationRemaining(Integer medicationRemaining) {
         this.medicationRemaining = medicationRemaining;
     }

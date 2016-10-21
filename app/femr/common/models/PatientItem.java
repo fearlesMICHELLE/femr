@@ -27,6 +27,7 @@ public class PatientItem {
     private String address;
     private String city;
     private String age;//this is a string representing an integer and "YO"(adult) or "MO"(infant)
+    private String isApproximateAge; //String representing whether the age is approximate (YES), guessed (NO), or NULL
     private Integer yearsOld;//the age of the patient as an integer. 0 if the patient is less than a year old
     private Integer monthsOld;
     private Date birth;
@@ -99,6 +100,10 @@ public class PatientItem {
     public void setAge(String age) {
         this.age = age;
     }
+
+    public void setIsApproximateAge(String isApproximateAge){this.isApproximateAge = isApproximateAge;}
+
+    public String getIsApproximateAge(){return this.isApproximateAge;}
 
     public Date getBirth() {
         return birth;

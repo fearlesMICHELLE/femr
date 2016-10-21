@@ -44,6 +44,10 @@ public interface IPatient {
 
     void setAge(Date age);
 
+    String getIsApproximateAge();
+
+    void setIsApproximateAge(String isApproximateAge);
+
     String getSex();
 
     void setSex(String sex);

@@ -40,6 +40,8 @@ public class Patient implements IPatient {
     private String lastName;
     @Column(name = "age")
     private Date age;
+    @Column(name = "isApproximateAge", nullable = true)
+    private String isApproximateAge;
     @Column(name = "sex", nullable = true)
     private String sex;
     @Column(name = "address", nullable = true)
@@ -103,6 +105,12 @@ public class Patient implements IPatient {
     public void setAge(Date age) {
         this.age = age;
     }
+
+    @Override
+    public String getIsApproximateAge(){return isApproximateAge;}
+
+    @Override
+    public void setIsApproximateAge(String isApproximateAge){this.isApproximateAge = isApproximateAge;}
 
     @Override
     public String getSex() {

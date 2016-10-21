@@ -372,6 +372,7 @@ var triageFields = {
         firstName: $('#firstName'),
         lastName: $('#lastName'),
         age: $('#age'),//doesn't work for an existing patient
+        isApproximateAge: $('isApproximateAge'),
         years: $('#years'),
         months: $('#months'),
         ageClassification: $('[name=ageClassification]'),
@@ -409,6 +410,7 @@ var birthdayAgeAutoCalculateFeature = {
 
         if (!patientInfo.years.val() && !patientInfo.months.val()) {
             patientInfo.age.val(null);
+            patientInfo.isApproximateAge.val("NULL");
             patientInfo.years.css('border', '');
             patientInfo.months.css('border', '');
             return false;
@@ -420,6 +422,7 @@ var birthdayAgeAutoCalculateFeature = {
             if (checkYears < 0 || isNaN(checkYears)) {
                 patientInfo.years.css('border-color', 'red');
                 patientInfo.age.val(null);
+                patientInfo.isApproximateAge.val("NO");
                 pass = false;
             }
             else {
@@ -434,6 +437,7 @@ var birthdayAgeAutoCalculateFeature = {
             if (checkMonths < 0 || isNaN(checkMonths)) {
                 patientInfo.months.css('border-color', 'red');
                 patientInfo.age.val(null);
+                patientInfo.isApproximateAge.val("NO");
                 pass = false;
             }
             else {
@@ -569,6 +573,7 @@ $(document).ready(function () {
             var nan = randomString(birthDate);
             if (nan === false) {
                 $('#age').val(birthString);
+                $('#isApproximateAge').val("YES");
                 $('#years').css('border', '');
                 $('#months').css('border', '');
                 $('#age').css('border', '');
@@ -582,6 +587,7 @@ $(document).ready(function () {
             var nan = randomString(birthDate);
             if (nan === false) {
                 $('#age').val(birthString);
+                $('#isApproximateAge').val("YES");
                 $('#years').css('border', '');
                 $('#months').css('border', '');
                 $('#age').css('border', '');

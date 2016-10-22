@@ -29,6 +29,11 @@ var triageFieldValidator = {
         } else {
             //something has been filled out
             $('#ageClassificationWrap').css('border', 'none');
+
+            //If the age classification was the only item filled out, specify that isApproximateAge is no
+            if (patientInformation.ageClassification.filter(':checked').val() && (!patientInformation.age.val() && !patientInformation.months.val() && !patientInformation.years.val())){
+                $('#isApproximateAge').val("NO");
+            }
         }
 
     },

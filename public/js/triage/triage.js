@@ -313,7 +313,7 @@ var diabeticScreeningFeature = {
         //disable age classification, need to handle absence of POST data
         var value = $("[name=ageClassification]:checked").val();
         triageFields.patientInformation.ageClassification.prop('disabled', true);
-        if (value){//checks to make sure there is a value to POST. If there isn't, don't post anythign (normal behavior)
+        if (value){//checks to make sure there is a value to POST. If there isn't, don't post anything (normal behavior)
             triageFields.patientInformation.ageClassification.last().append("<input type='text' class='hidden' name='ageClassification' value='" + value + "'/>");
         }
         //disable sex buttons, since this is weird and added to the label we still get POST data
@@ -372,7 +372,7 @@ var triageFields = {
         firstName: $('#firstName'),
         lastName: $('#lastName'),
         age: $('#age'),//doesn't work for an existing patient
-        isApproximateAge: $('isApproximateAge'),
+        isApproximateAge: $('#isApproximateAge'),
         years: $('#years'),
         months: $('#months'),
         ageClassification: $('[name=ageClassification]'),
@@ -422,7 +422,6 @@ var birthdayAgeAutoCalculateFeature = {
             if (checkYears < 0 || isNaN(checkYears)) {
                 patientInfo.years.css('border-color', 'red');
                 patientInfo.age.val(null);
-                patientInfo.isApproximateAge.val("NO");
                 pass = false;
             }
             else {
@@ -437,7 +436,6 @@ var birthdayAgeAutoCalculateFeature = {
             if (checkMonths < 0 || isNaN(checkMonths)) {
                 patientInfo.months.css('border-color', 'red');
                 patientInfo.age.val(null);
-                patientInfo.isApproximateAge.val("NO");
                 pass = false;
             }
             else {
@@ -529,7 +527,8 @@ $(document).ready(function () {
     $('#yesDiabetesScreen').click(function(){
         $('input[name=isDiabetesScreenPerformed]').val("true");
     });
-    //birthday shit
+
+    //birthday shit is super shitty
     $('#age').change(function () {
         var inputYear = $('#age').val().split('-')[0];
         var inputMonth = $('#age').val().split('-')[1] - 1;
@@ -548,6 +547,7 @@ $(document).ready(function () {
                 if (diffDay < 0) {
                     ageMonths--;
                 }
+                $('#isApproximateAge').val("YES");
                 $('#years').val(Math.floor(ageMonths / 12));
                 $('#months').val(ageMonths % 12);
                 $('#years').css('border', '');
@@ -573,7 +573,7 @@ $(document).ready(function () {
             var nan = randomString(birthDate);
             if (nan === false) {
                 $('#age').val(birthString);
-                $('#isApproximateAge').val("YES");
+                $('#isApproximateAge').val("NO");
                 $('#years').css('border', '');
                 $('#months').css('border', '');
                 $('#age').css('border', '');
@@ -587,7 +587,7 @@ $(document).ready(function () {
             var nan = randomString(birthDate);
             if (nan === false) {
                 $('#age').val(birthString);
-                $('#isApproximateAge').val("YES");
+                $('#isApproximateAge').val("NO");
                 $('#years').css('border', '');
                 $('#months').css('border', '');
                 $('#age').css('border', '');
@@ -616,6 +616,7 @@ $(document).ready(function () {
         //only prepare for POST if the fields are validated
         //also only do the diabetes prompt checking if the fields are validated
         if (pass === true){
+
             //get the base64 URI string from the canvas
             patientPhotoFeature.prepareForPOST();
             //make sure the feature is turned on before JSONifying

@@ -58,6 +58,10 @@
 
 
                 <div id="ageClassificationWrap">
+
+                    <!-- Add Approximate Age to Form so the value will be posted... -->
+                    <input type="text" class="hidden" name="isApproximateAge" id="isApproximateAge" value="@viewModel.getPatient.getIsApproximateAge"/>
+
                     <label>Age<span class="red bold">*</span></label>
                     @inputAge("Age", "Years", "years", "Months", "months", if(viewModel != null) viewModel.getPatient else null)
                     <span class="orSpan">OR</span>

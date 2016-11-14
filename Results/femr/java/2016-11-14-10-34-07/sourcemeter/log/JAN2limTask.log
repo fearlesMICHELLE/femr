@@ -1,0 +1,14 @@
+[2016-11-14 10:34:16] Start:JAN2limTask
+JAN2Lim 8.1.0 (build 8717#45019 Win64) - (C) 2001-2016 FrontEndART Ltd.
+The component structure  hasn't built.
+Loading file:    C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\femr-master\.columbus_java\femr.ljsi
+
+Statistics:
+	Converting time              :       3.09s
+	Saving asg time              :       0.06s
+	Dumping limml time           :       0.00s
+	Total time                   :       3.15s
+	Peak memory usage            :      76.50MB
+	Number of not existed files  :          0
+
+[2016-11-14 10:34:19] End:JAN2limTask Result:OK

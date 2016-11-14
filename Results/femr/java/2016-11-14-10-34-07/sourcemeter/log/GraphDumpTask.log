@@ -1,0 +1,6 @@
+[2016-11-14 10:34:43] Start:GraphDumpTask
+GraphDumpTool 8.1.0 (build 8717#45019 Win64) - (C) 2001-2016 FrontEndART Ltd.
+Loading: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\femr.graph
+Creating csv dump ...
+Creating xml dump ...
+[2016-11-14 10:34:56] End:GraphDumpTask Result:OK

@@ -1,0 +1,10 @@
+[2016-11-14 10:34:24] Start:GraphMergeTask
+GraphMerge 8.1.0 (build 8717#45019 Win64) - (C) 2001-2016 FrontEndART Ltd.
+Loading: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\sourcemeter\graph\femr-AndroidHunter.graph
+Merging: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\sourcemeter\graph\femr-DCF.graph
+Merging: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\sourcemeter\graph\femr-FaultHunter.graph
+Merging: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\sourcemeter\graph\femr-PMD.graph
+Merging: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\sourcemeter\graph\femr-VulnerabilityHunter.graph
+Merging: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\sourcemeter\graph\femr-metrics.graph
+Saving: C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\femr.graph
+[2016-11-14 10:34:25] End:GraphMergeTask Result:OK

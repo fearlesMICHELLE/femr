@@ -22,8 +22,6 @@ import org.joda.time.*;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import play.Logger;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,20 +32,14 @@ import java.util.Date;
 public class dateUtils {
 
     public static int calculateYears(Date age) {
-
-        LocalDate birthdate = new LocalDate(age);
-        LocalDate now = new LocalDate();
-        Years years = Years.yearsBetween(birthdate, now);
-        return years.getYears();
+        return Years.yearsBetween(new LocalDate(age), new LocalDate()).getYears();
     }
 
     public static String getCurrentDateTimeString(){
-        DateTimeFormatter dateFormat = DateTimeFormat
-                .forPattern("yyyy/mm/dd HH:mm:ss");
+        DateTimeFormatter dateFormat = DateTimeFormat.forPattern("yyyy/mm/dd HH:mm:ss");
         LocalDateTime localDateTime = new LocalDateTime();
         dateFormat.print(localDateTime);
-        String dt = localDateTime.toString();
-        return dt;
+        return localDateTime.toString();
     }
 
     public static DateTime getCurrentDateTime(){
@@ -58,14 +50,13 @@ public class dateUtils {
      * Gets the integer age of a patient, then appends "YO" or "MO"
      * depending on if the patient age is in years(adult) or months(baby)
      *
+     * If the patient is 2 or younger, result returned in months
+     *
      * @param born the birthdate of the patient
      * @return a string with the patient's age
      */
     public static String getAge(Date born) {
-        LocalDate birthdate = new LocalDate(born);
-        LocalDate now = new LocalDate();
-        Months months = Months.monthsBetween(birthdate, now);
-        int monthsInt = months.getMonths();
+        int monthsInt = Months.monthsBetween(new LocalDate(born), new LocalDate()).getMonths();
         if (monthsInt < 24)
             return Integer.toString(monthsInt) + " MO";
         else
@@ -81,16 +72,11 @@ public class dateUtils {
      * if an error occured OR if the patient does not have an age (just an age classification).
      */
     public static Integer getYearsInteger(Date born) {
-
-        if (born == null){
+        if (born == null)
             return null;
-        }
 
-        LocalDate birthdate = new LocalDate(born);
-        LocalDate now = new LocalDate();
         Integer age = 0;
-        Months months = Months.monthsBetween(birthdate, now);
-        int monthsInt = months.getMonths();
+        int monthsInt =Months.monthsBetween(new LocalDate(born), new LocalDate()).getMonths();
         if (monthsInt >= 12) {
             double temp = Math.floor(monthsInt / 12);
             try {
@@ -99,9 +85,7 @@ public class dateUtils {
                 age = null;
                 Logger.error("a patient's age could not be handled as an int");
             }
-
         }
-
         return age;
     }
 
@@ -113,26 +97,13 @@ public class dateUtils {
      * if an error occured OR if the patient does not have an age (just an age classification).
      */
     public static Integer getMonthsInteger(Date born) {
-
-        if (born == null){
-            return null;
-        }
-
-        LocalDate birthdate = new LocalDate(born);
-        LocalDate now = new LocalDate();
-        Months months = Months.monthsBetween(birthdate, now);
-
-        return months.getMonths();
+        if (born == null){return null;}
+        return Months.monthsBetween(new LocalDate(born), new LocalDate()).getMonths();
     }
 
     public static float getAgeAsOfDateFloat(Date born, DateTime asOfDate) {
-
-        LocalDate birthdate = new LocalDate(born);
-        LocalDate currDate = new LocalDate(asOfDate);
-        Months months = Months.monthsBetween(birthdate, currDate);
-        int monthsInt = months.getMonths();
-        float result = (float) monthsInt;
-        return result/12;
+        float monthsInt = (float) Months.monthsBetween(new LocalDate(born), new LocalDate(asOfDate)).getMonths();
+        return monthsInt/12;
     }
 
     /**
@@ -145,19 +116,13 @@ public class dateUtils {
 
         if (dateTime == null)
             return null;
-
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/yyyy");
-        String dateString = dateTime.toString(formatter);
-
-        return dateString;
+        return dateTime.toString(DateTimeFormat.forPattern("MM/yyyy"));
     }
 
     public static String getFriendlyDate(DateTime dateTime){
         if (dateTime == null)
             return null;
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM d, yyyy - HH:mm:ss");
-        String dtStr = dateTime.toString(fmt);
-        return dtStr;
+        return dateTime.toString(DateTimeFormat.forPattern("MMMM d, yyyy - HH:mm:ss"));
     }
 
     /**
@@ -170,12 +135,9 @@ public class dateUtils {
      * @return the sexy looking date string or null if errors
      */
     public static String getFriendlyDate(Date date){
-
         if (date == null)
             return null;
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-        String dStr = df.format(date);
-        return dStr;
+        return new SimpleDateFormat("MM/dd/yyyy").format(date);
     }
 
     /**
@@ -189,12 +151,8 @@ public class dateUtils {
      * @return the sexy looking date string or null if errors
      */
     public static String getFriendlyInternationalDate(Date date){
-
         if (date == null)
             return null;
-        DateFormat df = new SimpleDateFormat("dd/MMMM/yyyy");
-        String dStr = df.format(date);
-        return dStr;
+        return new SimpleDateFormat("dd/MMMM/yyyy").format(date);
     }
 }
-

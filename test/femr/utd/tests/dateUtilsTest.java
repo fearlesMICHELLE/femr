@@ -13,15 +13,12 @@ import static org.junit.Assert.*;
  */
 public class dateUtilsTest extends BaseTest{
 
-    private static dateUtils date;
-
-
     @Test
     public void testcalculateYears() throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date test = sdf.parse("21/11/2000");
-
-        assertTrue(date.calculateYears(test) > 15);
+        Integer tmp = dateUtils.calculateYears(test);
+        assertTrue( tmp >= 15);
 
     }
 }

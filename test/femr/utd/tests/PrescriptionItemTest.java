@@ -33,7 +33,7 @@ public class PrescriptionItemTest extends BaseTest{
         PrescriptionItem test = new PrescriptionItem();
         Name n = new Name("TEST", "NAME");
         test.setPrescriberName(n);
-        assertTrue(test.getName().equals(n));
+        assertTrue(test.getPrescriberName().equals(n));
 
     }
 }

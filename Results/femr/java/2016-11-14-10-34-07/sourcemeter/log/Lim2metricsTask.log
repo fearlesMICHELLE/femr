@@ -1,0 +1,11 @@
+[2016-11-14 10:34:19] Start:Lim2metricsTask
+LIM2Metrics 8.1.0 - Java (build 8717#45019 Win64) - (C) 2001-2016 FrontEndART Ltd.
+Saving graph to C:\Users\Michelle\Downloads\SourceMeter-8.1.0-x64-windows\SourceMeter-8.1.0-x64-windows\Java\Demo\Results\femr\java\2016-11-14-10-34-07\sourcemeter\graph\femr-metrics.graph
+Exporting rul
+
+Statistics:
+	Calculation time         :       0.39s
+	Export time              :       0.05s
+	Total time               :       0.58s
+	Peak memory usage        :      49.90MB
+[2016-11-14 10:34:23] End:Lim2metricsTask Result:OK

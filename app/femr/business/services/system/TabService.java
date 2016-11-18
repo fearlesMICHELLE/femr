@@ -115,7 +115,7 @@ public class TabService implements ITabService {
             response.addError("", "bad parameters, wtf are you doing?");
             return response;
         }
-        ITab tab = dataModelMapper.createTab(dateUtils.getCurrentDateTime(), newTab.getLeftColumnSize(), newTab.getRightColumnSize(), newTab.getName(), false, userId);
+        ITab tab = dataModelMapper.createTab(new DateTime(), newTab.getLeftColumnSize(), newTab.getRightColumnSize(), newTab.getName(), false, userId);
 
         ExpressionList<Tab> query = QueryProvider.getTabQuery()
                 .where()

@@ -274,7 +274,7 @@ public class MedicationService implements IMedicationService {
 
         List<PrescriptionItem> prescriptionItems = new ArrayList<>();
 
-        DateTime dateTime = dateUtils.getCurrentDateTime();
+        DateTime dateTime = new DateTime();
 
         prescriptionsToDispense.forEach((prescriptionId, isCounseled) -> {
 

@@ -99,7 +99,7 @@ public class LogicDoer {
         DateTime dateOfMedicalVisit = patientEncounter.getDateOfMedicalVisit();
         DateTime dateOfPharmacyVisit = patientEncounter.getDateOfPharmacyVisit();
         Boolean isClosed = false;
-        DateTime dateNow = dateUtils.getCurrentDateTime();
+        DateTime dateNow = new DateTime();
 
         if (dateOfPharmacyVisit != null) {
             isClosed = true;

@@ -24,12 +24,12 @@ import femr.data.daos.Repository;
 import femr.data.models.core.*;
 import femr.data.models.mysql.*;
 import femr.data.models.mysql.concepts.ConceptDiagnosis;
-import femr.util.calculations.dateUtils;
 import femr.util.encryptions.BCryptPasswordEncryptor;
 import femr.util.encryptions.IPasswordEncryptor;
 import play.Play;
 import java.util.ArrayList;
 import java.util.List;
+import org.joda.time.DateTime;
 
 public class DatabaseSeeder {
 
@@ -797,7 +797,7 @@ public class DatabaseSeeder {
                 tab = new Tab();
                 tab.setName("HPI");
                 tab.setIsDeleted(false);
-                tab.setDateCreated(dateUtils.getCurrentDateTime());
+                tab.setDateCreated(new DateTime());
                 tab.setUserId(null);
                 tab.setLeftColumnSize(2);
                 tab.setRightColumnSize(2);
@@ -809,7 +809,7 @@ public class DatabaseSeeder {
                 tab = new Tab();
                 tab.setName("PMH");
                 tab.setIsDeleted(false);
-                tab.setDateCreated(dateUtils.getCurrentDateTime());
+                tab.setDateCreated(new DateTime());
                 tab.setUserId(null);
                 tab.setLeftColumnSize(0);
                 tab.setRightColumnSize(0);
@@ -821,7 +821,7 @@ public class DatabaseSeeder {
                 tab = new Tab();
                 tab.setName("Treatment");
                 tab.setIsDeleted(false);
-                tab.setDateCreated(dateUtils.getCurrentDateTime());
+                tab.setDateCreated(new DateTime());
                 tab.setUserId(null);
                 tab.setLeftColumnSize(0);
                 tab.setRightColumnSize(0);
@@ -833,7 +833,7 @@ public class DatabaseSeeder {
                 tab = new Tab();
                 tab.setName("Photos");
                 tab.setIsDeleted(false);
-                tab.setDateCreated(dateUtils.getCurrentDateTime());
+                tab.setDateCreated(new DateTime());
                 tab.setUserId(null);
                 tab.setLeftColumnSize(0);
                 tab.setRightColumnSize(0);
@@ -1020,13 +1020,13 @@ public class DatabaseSeeder {
             adminUser.setLastName("");
             adminUser.setEmail(defaultAdminUsername);
             adminUser.setPassword(encryptedAdminPassword);
-            adminUser.setLastLogin(dateUtils.getCurrentDateTime());
-            adminUser.setDateCreated( dateUtils.getCurrentDateTime() );
+            adminUser.setLastLogin(new DateTime());
+            adminUser.setDateCreated(new DateTime());
             adminUser.setDeleted(false);
             Role role = roleRepository.findOne(Ebean.find(Role.class).where().eq("name", "Administrator"));
             adminUser.addRole(role);
             adminUser.setPasswordReset(false);
-            adminUser.setPasswordCreatedDate( dateUtils.getCurrentDateTime() );
+            adminUser.setPasswordCreatedDate(new DateTime());
             userRepository.create(adminUser);
 
             //SuperUser is currently only used for managing dynamic tabs on the medical page
@@ -1038,13 +1038,13 @@ public class DatabaseSeeder {
             superUser.setLastName("");
             superUser.setEmail(defaultSuperuserUsername);
             superUser.setPassword(encryptedSuperuserPassword);
-            superUser.setLastLogin(dateUtils.getCurrentDateTime());
-            superUser.setDateCreated( dateUtils.getCurrentDateTime() );
+            superUser.setLastLogin(new DateTime());
+            superUser.setDateCreated(new DateTime());
             superUser.setDeleted(false);
             Role role1 = roleRepository.findOne(Ebean.find(Role.class).where().eq("name", "SuperUser"));
             superUser.addRole(role1);
             superUser.setPasswordReset(false);
-            superUser.setPasswordCreatedDate( dateUtils.getCurrentDateTime() );
+            superUser.setPasswordCreatedDate(new DateTime());
             userRepository.create(superUser);
         }
     }

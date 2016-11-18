@@ -9,7 +9,6 @@ import femr.data.models.core.IUser;
 import femr.ui.models.sessions.CreateViewModel;
 import femr.ui.views.html.sessions.create;
 import femr.ui.views.html.sessions.editPassword;
-import femr.util.calculations.dateUtils;
 import femr.util.stringhelpers.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -49,7 +48,7 @@ public class SessionsController extends Controller {
             return ok(create.render(createViewModelForm));
         }else{
             IUser user = userService.retrieveById(response.getResponseObject().getId());
-            user.setLastLogin(dateUtils.getCurrentDateTime());
+            user.setLastLogin(new DateTime());
             ServiceResponse<IUser> userResponse = userService.update(user, false);
             if (userResponse.hasErrors()){
                 throw new RuntimeException();

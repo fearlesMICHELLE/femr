@@ -164,7 +164,7 @@ public class DataModelMapper implements IDataModelMapper{
             return null;
         }
         ILoginAttempt loginAttempt = loginAttemptProvider.get();
-        loginAttempt.setLoginDate(dateUtils.getCurrentDateTime());
+        loginAttempt.setLoginDate(new DateTime());
         loginAttempt.setIsSuccessful(isSuccessful);
         loginAttempt.setUsernameAttempt(usernameValue);
         loginAttempt.setIp_address(ipAddress);
@@ -455,7 +455,7 @@ public class DataModelMapper implements IDataModelMapper{
         IPatientPrescription patientPrescription = patientPrescriptionProvider.get();
 
         patientPrescription.setAmount(amount);
-        patientPrescription.setDateTaken(dateUtils.getCurrentDateTime());
+        patientPrescription.setDateTaken(new DateTime());
         patientPrescription.setPatientEncounter(Ebean.getReference(patientEncounterProvider.get().getClass(), encounterId));
         patientPrescription.setMedication(Ebean.getReference(medicationProvider.get().getClass(), medicationId));
         if (medicationAdministrationId != null)
@@ -611,7 +611,7 @@ public class DataModelMapper implements IDataModelMapper{
         }
         //if screening was performed, set date and screener
         else if (isDiabetesScreened) {
-            patientEncounter.setDateOfDiabeteseScreen(dateUtils.getCurrentDateTime());
+            patientEncounter.setDateOfDiabeteseScreen(new DateTime());
             patientEncounter.setDiabetesScreener(Ebean.getReference(userProvider.get().getClass(), diabetesScreenerId));
         }
         //note whether screening was performed or not

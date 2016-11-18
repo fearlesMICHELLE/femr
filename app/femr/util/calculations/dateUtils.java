@@ -42,9 +42,9 @@ public class dateUtils {
         return localDateTime.toString();
     }
 
-    public static DateTime getCurrentDateTime(){
+   /* public static DateTime getCurrentDateTime(){
         return new DateTime();
-    }
+    } */
 
     /**
      * Gets the integer age of a patient, then appends "YO" or "MO"
@@ -97,8 +97,7 @@ public class dateUtils {
      * if an error occured OR if the patient does not have an age (just an age classification).
      */
     public static Integer getMonthsInteger(Date born) {
-        if (born == null){return null;}
-        return Months.monthsBetween(new LocalDate(born), new LocalDate()).getMonths();
+        return (born == null) ? null :Months.monthsBetween(new LocalDate(born), new LocalDate()).getMonths();
     }
 
     public static float getAgeAsOfDateFloat(Date born, DateTime asOfDate) {
@@ -113,16 +112,11 @@ public class dateUtils {
      * @return A string in the format "mm yyyy" or null if dateTime is null
      */
     public static String getFriendlyDateMonthYear(DateTime dateTime){
-
-        if (dateTime == null)
-            return null;
-        return dateTime.toString(DateTimeFormat.forPattern("MM/yyyy"));
+        return (dateTime == null) ? null :dateTime.toString(DateTimeFormat.forPattern("MM/yyyy"));
     }
 
     public static String getFriendlyDate(DateTime dateTime){
-        if (dateTime == null)
-            return null;
-        return dateTime.toString(DateTimeFormat.forPattern("MMMM d, yyyy - HH:mm:ss"));
+        return (dateTime == null) ? null :dateTime.toString(DateTimeFormat.forPattern("MMMM d, yyyy - HH:mm:ss"));
     }
 
     /**
@@ -135,9 +129,7 @@ public class dateUtils {
      * @return the sexy looking date string or null if errors
      */
     public static String getFriendlyDate(Date date){
-        if (date == null)
-            return null;
-        return new SimpleDateFormat("MM/dd/yyyy").format(date);
+        return (date == null) ? null : new SimpleDateFormat("MM/dd/yyyy").format(date);
     }
 
     /**
@@ -151,8 +143,6 @@ public class dateUtils {
      * @return the sexy looking date string or null if errors
      */
     public static String getFriendlyInternationalDate(Date date){
-        if (date == null)
-            return null;
-        return new SimpleDateFormat("dd/MMMM/yyyy").format(date);
+        return (date == null) ? null : new SimpleDateFormat("dd/MMMM/yyyy").format(date);
     }
 }

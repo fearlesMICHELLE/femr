@@ -32,7 +32,6 @@ import femr.data.IDataModelMapper;
 import femr.data.daos.IRepository;
 import femr.data.models.core.*;
 import femr.data.models.mysql.*;
-import femr.util.calculations.dateUtils;
 import femr.util.stringhelpers.StringUtils;
 import org.joda.time.DateTime;
 
@@ -97,7 +96,7 @@ public class EncounterService implements IEncounterService {
             if (patientAgeClassification != null)
                 patientAgeClassificationId = patientAgeClassification.getId();
 
-            IPatientEncounter newPatientEncounter = dataModelMapper.createPatientEncounter(patientId, dateUtils.getCurrentDateTime(), nurseUser.getId(), patientAgeClassificationId, tripId);
+            IPatientEncounter newPatientEncounter = dataModelMapper.createPatientEncounter(patientId, new DateTime(), nurseUser.getId(), patientAgeClassificationId, tripId);
             newPatientEncounter = patientEncounterRepository.create(newPatientEncounter);
 
             List<IChiefComplaint> chiefComplaintBeans = new ArrayList<>();
@@ -229,7 +228,7 @@ public class EncounterService implements IEncounterService {
 
             ITabField tabField = tabFieldRepository.findOne(query);
             List<IPatientEncounterTabField> patientEncounterTabFields = new ArrayList<>();
-            DateTime dateTaken = dateUtils.getCurrentDateTime();
+            DateTime dateTaken = new DateTime();
             for (String problemval : problemValues) {
 
                 IPatientEncounterTabField patientEncounterTabField = dataModelMapper.createPatientEncounterTabField(tabField.getId(), userId, problemval, encounterId, dateTaken, null);
@@ -299,7 +298,7 @@ public class EncounterService implements IEncounterService {
             //get all tab fields to use in finding reference Ids
             List<? extends ITabField> tabFields = tabFieldRepository.findAll(TabField.class);
             //one datetime field to put in everything
-            DateTime dateTaken = dateUtils.getCurrentDateTime();
+            DateTime dateTaken = new DateTime();
             //the fields that we will be saving to the database after all is said and (almost) done
             List<IPatientEncounterTabField> patientEncounterTabFieldsForSaving = new ArrayList<>();
             //foreign key IDs for patientEncounterTabField referencing
@@ -386,7 +385,7 @@ public class EncounterService implements IEncounterService {
             //get all tab fields to use in finding reference Ids
             List<? extends ITabField> tabFields = tabFieldRepository.findAll(TabField.class);
             //one datetime field to put in everything
-            DateTime dateTaken = dateUtils.getCurrentDateTime();
+            DateTime dateTaken = new DateTime();
             //the fields that we will be saving to the database after all is said and (almost) done
             List<IPatientEncounterTabField> patientEncounterTabFieldsForSaving = new ArrayList<>();
             //foreign key IDs for patientEncounterTabField referencing

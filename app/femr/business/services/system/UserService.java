@@ -78,7 +78,7 @@ public class UserService implements IUserService {
             List<? extends IRole> roles = roleRepository.find(query);
 
             // AJ Saclayan - Password Constraints
-            IUser newUser = dataModelMapper.createUser(user.getFirstName(), user.getLastName(), user.getEmail(), dateUtils.getCurrentDateTime(), user.getNotes(), password, false, false, roles, userId);
+            IUser newUser = dataModelMapper.createUser(user.getFirstName(), user.getLastName(), user.getEmail(), new DateTime(), user.getNotes(), password, false, false, roles, userId);
             encryptAndSetUserPassword(newUser);
 
 

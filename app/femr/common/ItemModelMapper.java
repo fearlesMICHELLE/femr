@@ -22,6 +22,7 @@ import femr.business.helpers.LogicDoer;
 import femr.common.models.*;
 import femr.data.models.core.*;
 import femr.data.models.mysql.MedicationInventory;
+import femr.util.calculations.LocaleUnitConverter;
 import femr.util.calculations.dateUtils;
 import femr.util.stringhelpers.StringUtils;
 import org.joda.time.DateTime;
@@ -186,15 +187,14 @@ public class ItemModelMapper implements IItemModelMapper {
 
         //required fields
         patientItem.setId(id);
-        patientItem.setFirstName(firstName);
-        patientItem.setLastName(lastName);
+        patientItem.setName(firstName, lastName);
         patientItem.setYearsOld(dateUtils.getYearsInteger(age));
         patientItem.setMonthsOld(dateUtils.getMonthsInteger(age));
-        patientItem.setCity(city);
+        patientItem.setAddressCity(city);
         patientItem.setUserId(userId);
         //optional fields
         if (StringUtils.isNotNullOrWhiteSpace(address))
-            patientItem.setAddress(address);
+            patientItem.setAddressAddress(address);
         if (StringUtils.isNotNullOrWhiteSpace(sex))
             patientItem.setSex(sex);
         if (age != null) {
@@ -223,8 +223,9 @@ public class ItemModelMapper implements IItemModelMapper {
         else
             patientItem.setHeightInches(0);
 
-        if (weight != null)
-            patientItem.setWeight(weight);
+        if (weight != null) {
+            patientItem.setWeightLbs(weight);
+        }
 
         return patientItem;
     }

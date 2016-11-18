@@ -20,12 +20,15 @@ package femr.common.models;
 
 import java.util.Date;
 
+import femr.util.attributes.Measurements;
+import femr.util.attributes.Name;
+import femr.util.attributes.Address;
+
+
 public class PatientItem {
     private int Id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String city;
+    private Name name;
+    private Address address;
     private String age;//this is a string representing an integer and "YO"(adult) or "MO"(infant)
     private String isApproximateAge; //String representing whether the age is approximate (YES), guessed (NO), or NULL
     private Integer yearsOld;//the age of the patient as an integer. 0 if the patient is less than a year old
@@ -37,15 +40,9 @@ public class PatientItem {
     private String pathToPhoto;
     private int userId;
     private Integer weeksPregnant;
-    private Integer heightFeet;
-    private Integer heightInches;
-   //added for femr-136 - dual unit display
-    private Integer heightFeetDual;
-    private Integer heightInchesDual;
+    private Measurements measurements;
 
-    private Float weight;
-    //added for femr-136 - dual unit display
-    private Float weightDual;
+
 
     public PatientItem(){
         //default empty values
@@ -61,36 +58,33 @@ public class PatientItem {
         Id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Name getName() {
+        return name;
+    }
+    public String getFirstName(){return this.name.getFirstName();}
+    public String getLastName(){return this.name.getLastName();}
+
+    public void setName(Name name) {
+        this.name = name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String firstName, String lastName) {
+
+        this.name.setFirstName(firstName);
+        this.name.setLastName(lastName);
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
-
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddressCity(String city){this.address.setCity(city);}
+    public void setAddressAddress(String address){this.address.setAddress(address);}
+    public void setAddress(String city, String address){
+        this.address.setCity(city);
+        this.address.setAddress(address);
     }
 
     public String getAge() {
@@ -154,52 +148,53 @@ public class PatientItem {
     }
 
     public Integer getHeightFeet() {
-        return heightFeet;
+        return this.measurements.getHeightFeet();
     }
 
     public void setHeightFeet(Integer heightFeet) {
-        this.heightFeet = heightFeet;
+        this.measurements.setHeightFeet(heightFeet);
     }
 
     public Integer getHeightInches() {
-        return heightInches;
+        return this.measurements.getHeightInches();
     }
 
     public void setHeightInches(Integer heightInches) {
-        this.heightInches = heightInches;
-    }
-
-    public Integer getHeightFeetDual() {
-        return heightFeetDual;
-    }
-
-    public void setHeightFeetDual(Integer heightFeetDual) {
-        this.heightFeetDual = heightFeetDual;
-    }
-
-    public Integer getHeightInchesDual() {
-        return heightInchesDual;
-    }
-
-    public void setHeightInchesDual(Integer heightInchesDual) {
-        this.heightInchesDual = heightInchesDual;
+        this.measurements.setHeightInches(heightInches);
     }
 
 
-    public Float getWeight() {
-        return weight;
+    public Integer getHeightMeters() {
+        return this.measurements.getHeightMeters();
     }
 
-    public void setWeight(Float weight) {
-        this.weight = weight;
+    public void setHeightMeters(Integer heightMeters) {
+        this.measurements.setHeightMeters(heightMeters);
     }
 
-    public Float getWeightDual() {
-        return weightDual;
+    public Integer getHeightCentimeters() {
+        return this.measurements.getHeightCentimeters();
     }
 
-    public void setWeightDual(Float weightDual) {
-        this.weightDual = weightDual;
+    public void setHeightCentimeters(Integer heightCentimeters) {
+        this.measurements.setHeightCentimeters(heightCentimeters);
+    }
+
+
+    public Float getWeightLbs() {
+        return this.measurements.getWeightLbs();
+    }
+
+    public void setWeightLbs(Float weightLbs) {
+        this.measurements.setWeightLbs(weightLbs);
+    }
+
+    public Float getWeightMetric() {
+        return this.measurements.getWeightKgs();
+    }
+
+    public void setWeightKgs(Float weightKgs) {
+        this.measurements.setWeightKgs(weightKgs);
     }
 
     public String getFriendlyDateOfBirth() {

@@ -141,13 +141,9 @@ public class SearchService implements ISearchService {
                 patientItem.setPathToPhoto("/photo/patient/" + patientId + "?showDefault=false");
             }
 
-            // If metric setting enabled convert response patientItem to metric
-            if (isMetric()){
-                patientItem = LocaleUnitConverter.toMetric(patientItem);
-            }else {
-               //added for femr-136 - dual unit display
-                patientItem = LocaleUnitConverter.forDualUnitDisplay(patientItem);
-            }
+            patientItem.setHeightMeters(LocaleUnitConverter.getMeters(patientItem.getHeightFeet(), patientItem.getHeightInches()));
+            patientItem.setHeightCentimeters(LocaleUnitConverter.getCentimetres(patientItem.getHeightFeet(), patientItem.getHeightInches()));
+
 
             response.setResponseObject(patientItem);
         } catch (Exception ex) {
@@ -210,9 +206,10 @@ public class SearchService implements ISearchService {
                     ageClassification
             );
 
-            // If metric setting enabled convert response patientItem to metric
-            if (isMetric())
-                patientItem = LocaleUnitConverter.toMetric(patientItem);
+            //Update Patient Item with Metric Values
+            patientItem.setHeightMeters(LocaleUnitConverter.getMeters(patientItem.getHeightFeet(), patientItem.getHeightInches()));
+            patientItem.setHeightCentimeters(LocaleUnitConverter.getCentimetres(patientItem.getHeightFeet(), patientItem.getHeightInches()));
+
 
             response.setResponseObject(patientItem);
         } catch (Exception ex) {
@@ -699,19 +696,6 @@ public class SearchService implements ISearchService {
         return response;
     }
 
-    /**
-     * Gets isActive of the metric setting
-     *
-     * @return
-     */
-    private boolean isMetric() {
-        ExpressionList<SystemSetting> query = QueryProvider.getSystemSettingQuery()
-                .where()
-                .eq("name", "Metric System Option");
-        ISystemSetting isMetric = systemSettingRepository.findOne(query);
-        return isMetric.isActive();
-    }
-
     /** AJ Saclayan
      * {@inheritDoc}
      */
@@ -722,20 +706,6 @@ public class SearchService implements ISearchService {
             response.addError("", "bad parameters");
             return response;
         }
-
-//        String[] words = citySearchQuery.trim().split(" ");
-//        String city = citySearchQuery
-//        if (words.length == 0) {
-//            //nothing was in the query
-//            response.addError("", "query string empty");
-//            return response;
-//        } else if (words.length == 2) {
-//            city = words[0];
-//        } else {
-//            response.addError("", "too many words in query string");
-//            return response;
-//        }
-
 
         //Build the Query
         //TODO: filter these by the current country of the team

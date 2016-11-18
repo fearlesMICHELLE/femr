@@ -20,13 +20,13 @@ package femr.common.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import femr.util.attributes.Name;
 
 public class PrescriptionItem {
     private int id;
     private String name;
     private String originalMedicationName;
-    private String prescriberFirstName;
-    private String prescriberLastName;
+    private Name prescriberName;
     private Integer administrationID;
     private String administrationName;
     private Float administrationModifier;
@@ -66,22 +66,21 @@ public class PrescriptionItem {
         this.id = id;
     }
 
+    public void setPrescriberName(Name name){this.prescriberName= name;}
+    public Name getPrescriberName(){return this.prescriberName;}
+
     public String getPrescriberFirstName() {
-        return prescriberFirstName;
+        return prescriberName.getFirstName();
     }
 
     public void setPrescriberFirstName(String prescriberFirstName) {
-        this.prescriberFirstName = prescriberFirstName;
-    }
-
+        this.prescriberName.setFirstName(prescriberFirstName);}
     public String getPrescriberLastName() {
-        return prescriberLastName;
+        return prescriberName.getLastName();
     }
 
     public void setPrescriberLastName(String prescriberLastName) {
-        this.prescriberLastName = prescriberLastName;
-    }
-
+        this.prescriberName.setLastName(prescriberLastName);}
     public Integer getAdministrationID() {
         return administrationID;
     }

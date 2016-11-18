@@ -285,15 +285,13 @@ public class TriageController extends Controller {
     private PatientItem populatePatientItem(IndexViewModelPost viewModelPost, CurrentUser currentUser) {
         PatientItem patient = new PatientItem();
         patient.setUserId(currentUser.getId());
-        patient.setFirstName(viewModelPost.getFirstName());
-        patient.setLastName(viewModelPost.getLastName());
+        patient.setName(viewModelPost.getFirstName(), viewModelPost.getLastName());
         if (viewModelPost.getAge() != null) {
             patient.setBirth(viewModelPost.getAge());
         }
         patient.setIsApproximateAge(viewModelPost.getIsApproximateAge());
         patient.setSex(viewModelPost.getSex());
-        patient.setAddress(viewModelPost.getAddress());
-        patient.setCity(viewModelPost.getCity());
+        patient.setAddress(viewModelPost.getAddress(),viewModelPost.getCity());
 
         return patient;
     }

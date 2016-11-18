@@ -219,12 +219,12 @@ public class PDFController extends Controller {
         // Row 2
         table.addCell(getStyledPhrase("Sex: ", outputStringOrNA(patientItem.getSex())));
         table.addCell(getStyledPhrase("Height: ", outputHeightOrNA(patientItem.getHeightFeet(), patientItem.getHeightInches())));
-        table.addCell(getStyledPhrase("Weight: ", outputFloatOrNA(patientItem.getWeight()) + " lbs"));
+        table.addCell(getStyledPhrase("Weight: ", outputFloatOrNA(patientItem.getWeightLbs()) + " lbs"));
         table.completeRow();
 
         // Row 3
-        table.addCell(getStyledPhrase("City: ", outputStringOrNA(patientItem.getCity())));
-        table.addCell(getStyledPhrase("Address: ", outputStringOrNA(patientItem.getAddress())));
+        table.addCell(getStyledPhrase("City: ", outputStringOrNA(patientItem.getAddress().getCity())));
+        table.addCell(getStyledPhrase("Address: ", outputStringOrNA(patientItem.getAddress().getAddress())));
         table.completeRow();
 
         return table;

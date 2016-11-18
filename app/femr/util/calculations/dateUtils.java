@@ -42,10 +42,6 @@ public class dateUtils {
         return localDateTime.toString();
     }
 
-   /* public static DateTime getCurrentDateTime(){
-        return new DateTime();
-    } */
-
     /**
      * Gets the integer age of a patient, then appends "YO" or "MO"
      * depending on if the patient age is in years(adult) or months(baby)
